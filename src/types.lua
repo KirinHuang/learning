@@ -30,3 +30,7 @@ t.John.Gender="Male"
 --t.jerry{Age=27, Gender="Male"}  
 
 print(t)
+
+-- type(x) 获取类型
+print(type(t))
+

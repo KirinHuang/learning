@@ -12,3 +12,6 @@
 
 > 可以使用type(x)获取类型
     
+#table
+在lua里面没有数组、map、object的概念，我觉的table就可以用来表示
+1. 数组
