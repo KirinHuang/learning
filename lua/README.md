@@ -1,10 +1,9 @@
 #Lua学习笔记
 
-1. [语法](https://github.com/KirinHuang/lua/tree/master/doc/syntax.md)
-2. [基本类型](https://github.com/KirinHuang/lua/tree/master/doc/base_type.md)
-3. [用法](https://github.com/KirinHuang/lua/tree/master/doc/usage.md)
-4. [函数](https://github.com/KirinHuang/lua/tree/master/doc/function.md)
-5. 
+1. [语法](doc/syntax.md)
+2. [基本类型](doc/base_type.md)
+3. [用法](doc/usage.md)
+4. [函数](doc/function.md)
 
 
 #参考文档
