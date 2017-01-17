@@ -1,0 +1,19 @@
+{
+  "name": "nodejs",
+  "version": "0.0.1",
+  "description": "just test nodejs",
+  "main": "main.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "node"
+  },
+  "keywords": [
+    "nodejs",
+    "test",
+    "es6"
+  ],
+  "author": "kirinhuang@126.com",
+  "license": "MIT"
+}
