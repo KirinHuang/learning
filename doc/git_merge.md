@@ -10,3 +10,8 @@
 4. 把抓取的`repo1/master`作为新的分支添加到本地 `git checkout repo1 repo1/master`
 5. 切换到`master`分支
 5. 合并分支 `git merge repo1`
+
+> 可能会碰到文件冲突的情况，可以使用如下步骤解决
+  1. git checkout --theirs YOUR_BINARY_FILES OR git checkout --ours YOUR_BINARY_FILES
+  2. git add YOUR_BINARY_FILES
+  3. git commit
