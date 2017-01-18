@@ -4,6 +4,7 @@
 
 #处理步骤
 假如是仓库`repo1`,`repo2`
+
 1. 把`repo1`的目录结构改成subdir/[原来仓库所有的文件] `git mv`
 2. 在`repo2`中添加`repo1`远程仓库 `git remote add repo1 ../repo1`
 3. 从`repo1`抓取数据到本仓库 `git fetch repo1`
