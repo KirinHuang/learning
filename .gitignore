@@ -1,5 +1,12 @@
 # nodejs
 **/node_modules
+**/dist
+
+# parcel
+**/.cache
+
+# logs
+**/*.log
 
 # MacOS
 **/.DS_Store
