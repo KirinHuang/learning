@@ -1,0 +1,14 @@
+.heros {
+  list-style: none;
+}
+
+.heros .badge {
+  background: blue;
+  color: #FFF;
+  padding: 0 5px;
+  margin-right: 5px;
+}
+
+.heros .selected {
+  background: red;
+}
