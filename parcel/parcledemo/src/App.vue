@@ -17,6 +17,7 @@ export default {
 
 <style lang="stylus">
 @import './styles/variables.css'
+@import './styles/icons.styl'
 
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -25,6 +26,8 @@ export default {
   text-align: center;
   color: var(--primary-color);
   margin-top: 60px;
+  display: flex;
+  flex-direction: column;
 
   &.on {
     color: red;
