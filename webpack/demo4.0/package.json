@@ -8,6 +8,7 @@
     "dev": "webpack-dev-server --open --config build/webpack.dev.js",
     "dev2": "node build/server.js",
     "build": "webpack --config build/webpack.prod.js",
+    "build:dev": "webpack --config build/webpack.dev.js",
     "watch": "webpack --watch --config build/webpack.dev.js"
   },
   "keywords": [],

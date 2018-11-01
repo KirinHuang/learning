@@ -8,14 +8,34 @@ module.exports = {
     app: './src/index.js',
   },
   output: {
-    filename: '[name].bundle.js',
+    filename: '[name].[hash].js',
     path: resolve(__dirname, '../dist'),
-    chunkFilename: '[name].bundle.js',
+    chunkFilename: '[name].[hash].js',
     publicPath: '/'
   },
   optimization: {
+    runtimeChunk: 'single',
     splitChunks: {
-      chunks: 'all'
+      cacheGroups: {
+        lodash: {
+          test: /.*lodash.*/,
+          name: 'lodash',
+          chunks: 'all'
+        },
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all'
+        },
+      }
+    }
+  },
+  externals: {
+    lodash: {
+      commonjs: 'lodash',
+      commonjs2: 'lodash',
+      amd: 'lodash',
+      root: '_'
     }
   },
   plugins: [
