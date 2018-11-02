@@ -1,6 +1,18 @@
 import { cube } from './math'
 import './style.css'
 
+__webpack_nonce__ = 'c29tZSBjb29sIHN0cmluZyB3aWxsIHBvcCB1cCAxMjM=';
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/service-worker.js').then(registration => {
+      console.log('WS registed: ', registration)
+    }).catch(registrationError => {
+      console.log('WS failed ', registrationError)
+    })
+  })
+}
+
 let element
 
 function getComponent() {

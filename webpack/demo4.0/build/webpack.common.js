@@ -5,13 +5,14 @@ const webpack = require('webpack')
 
 module.exports = {
   entry: {
-    app: './src/index.js',
+    app: './src/index.ts',
   },
   output: {
-    filename: '[name].[hash].js',
+    filename: '[name].dev.js',
     path: resolve(__dirname, '../dist'),
-    chunkFilename: '[name].[hash].js',
-    publicPath: '/'
+    chunkFilename: '[name].dev.js',
+    publicPath: '/',
+    pathinfo: false
   },
   optimization: {
     runtimeChunk: 'single',
@@ -47,26 +48,43 @@ module.exports = {
     }),
   ],
   module: {
-      rules: [
+    rules: [
+      {
+        test: /\.tsx?$/,
+        use: [
           {
-              test: /\.css$/,
-              use: [
-                  'style-loader',
-                  'css-loader'
-              ]
-          },
-          {
-              test: /\.(png|gif|svg|jpg)$/,
-              use: [
-                  'file-loader'
-              ]
-          },
-          {
-              test: /\.(woff|woff2)$/,
-              use: [
-                  'file-loader'
-              ]
+            loader: 'ts-loader',
+            options: {
+              transpileOnly: true,
+              experimentalWatchApi: true,
+            }
           }
-      ]
+        ],
+        exclude: /node_modules/
+      },
+      {
+          test: /\.css$/,
+          use: [
+              'style-loader',
+              'css-loader'
+          ]
+      },
+      {
+          test: /\.(png|gif|svg|jpg)$/,
+          use: [
+              'file-loader'
+          ]
+      },
+      {
+          test: /\.(woff|woff2)$/,
+          use: [
+              'file-loader'
+          ]
+      }
+    ]
+  },
+  resolve: {
+    symlinks: false,
+    extensions: ['.tsx', '.ts', '.js']
   }
 };
