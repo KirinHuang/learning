@@ -8,7 +8,6 @@ module.exports = merge(common, {
     filename: '[name].[contenthash:6].js',
     chunkFilename: '[name].[contenthash:6].js',
   },
-  // devtool: 'inline-source-map',
   plugins: [
     new WorkboxPlugin.GenerateSW({
       clientsClaim: true,

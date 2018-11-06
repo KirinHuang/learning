@@ -1,11 +1,11 @@
-const { resolve } = require('path');
+const { resolve, join } = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const webpack = require('webpack')
 
 module.exports = {
   entry: {
-    app: './src/index.ts',
+    app: './src/index.js',
   },
   output: {
     filename: '[name].dev.js',
@@ -15,7 +15,9 @@ module.exports = {
     pathinfo: false
   },
   optimization: {
-    runtimeChunk: 'single',
+    runtimeChunk: {
+      name: "manifest",
+    },
     splitChunks: {
       cacheGroups: {
         lodash: {
@@ -39,6 +41,7 @@ module.exports = {
       root: '_'
     }
   },
+  recordsPath: join(__dirname, "../dist/records.json"),
   plugins: [
     new CleanWebpackPlugin([resolve(__dirname, '../dist')], {
         root: process.cwd()
@@ -46,6 +49,7 @@ module.exports = {
     new HtmlWebpackPlugin({
         title: 'Output Management'
     }),
+    // new webpack.optimize.AggressiveSplittingPlugin()
   ],
   module: {
     rules: [
