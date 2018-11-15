@@ -1,4 +1,4 @@
-const { resolve } = require('path');
+const { resolve, join } = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
@@ -18,7 +18,9 @@ module.exports = {
     pathinfo: false
   },
   optimization: {
-    runtimeChunk: 'single',
+    runtimeChunk: {
+      name: "manifest",
+    },
     splitChunks: {
       cacheGroups: {
         lodash: {
@@ -42,6 +44,7 @@ module.exports = {
     //   root: '_'
     // }
   },
+  recordsPath: join(__dirname, "../dist/records.json"),
   plugins: [
     new CleanWebpackPlugin([resolve(__dirname, '../dist')], {
         root: process.cwd()
@@ -56,6 +59,7 @@ module.exports = {
     new HtmlWebpackPlugin({
         template: './src/index.tpl'
     }),
+    // new webpack.optimize.AggressiveSplittingPlugin()
   ],
   module: {
     rules: [
