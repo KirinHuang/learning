@@ -1,5 +1,5 @@
 import { cube } from './math'
-import './style.css'
+require('./assets/styles/index.css')
 
 __webpack_nonce__ = 'c29tZSBjb29sIHN0cmluZyB3aWxsIHBvcCB1cCAxMjM=';
 

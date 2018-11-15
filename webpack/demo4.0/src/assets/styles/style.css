@@ -1,0 +1,9 @@
+button {
+  color: var(--primary-color);
+  background: url("../images/logo.png") no-repeat;
+}
+
+/* button a {
+  color: var(--primary-color);
+  background: url("../images/logo.small.png") no-repeat;
+} */

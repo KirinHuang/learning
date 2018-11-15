@@ -1,11 +1,13 @@
 const { resolve } = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const webpack = require('webpack')
+const devMode = process.env.NODE_ENV !== 'production'
 
 module.exports = {
   entry: {
-    app: './src/index.ts',
+    app: './src/index.js',
   },
   output: {
     filename: '[name].dev.js',
@@ -32,16 +34,22 @@ module.exports = {
     }
   },
   externals: {
-    lodash: {
-      commonjs: 'lodash',
-      commonjs2: 'lodash',
-      amd: 'lodash',
-      root: '_'
-    }
+    // lodash: {
+    //   commonjs: 'lodash',
+    //   commonjs2: 'lodash',
+    //   amd: 'lodash',
+    //   root: '_'
+    // }
   },
   plugins: [
     new CleanWebpackPlugin([resolve(__dirname, '../dist')], {
         root: process.cwd()
+    }),
+    new MiniCssExtractPlugin({
+      // Options similar to the same options in webpackOptions.output
+      // both options are optional
+      filename: devMode ? '[name].dev.css' : '[name].[contenthash].css',
+      chunkFilename: devMode ? '[id].dev.css' : '[id].[contenthash].css',
     }),
     new HtmlWebpackPlugin({
         title: 'Output Management'
@@ -63,23 +71,38 @@ module.exports = {
         exclude: /node_modules/
       },
       {
-          test: /\.css$/,
-          use: [
-              'style-loader',
-              'css-loader'
-          ]
+        test: /\.(sa|sc|c)ss$/,
+        use: [
+          'css-hot-loader',
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'postcss-loader',
+          // 'sass-loader',
+        ],
       },
       {
-          test: /\.(png|gif|svg|jpg)$/,
-          use: [
-              'file-loader'
-          ]
+        test: /\.(png|gif|svg|jpg)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[hash:5].[ext]',
+              outputPath: 'images/'
+            }
+          }
+        ]
       },
       {
-          test: /\.(woff|woff2)$/,
-          use: [
-              'file-loader'
-          ]
+        test: /\.(woff|woff2)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[hash:5].[ext]',
+              outputPath: 'fonts/'
+            }
+          }
+        ]
       }
     ]
   },

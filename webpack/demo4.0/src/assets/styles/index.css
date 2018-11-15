@@ -1,0 +1,22 @@
+@import './theme.css';
+@import './style.css';
+
+.index1 {
+  color: var(--primary-color);
+}
+
+.component-a {
+  .header {
+    color: #123;
+  }
+}
+
+.button a {
+  color: var(--primary-color);
+  background: url("../images/logo.png") no-repeat;
+}
+
+.button_btn a {
+  color: var(--primary-color);
+  background: url("../images/logo.big.png") no-repeat;
+}
