@@ -1,13 +1,14 @@
 const { resolve } = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const webpack = require('webpack')
 const devMode = process.env.NODE_ENV !== 'production'
 
 module.exports = {
   entry: {
-    app: './src/index.js',
+    app: './src/main.js',
   },
   output: {
     filename: '[name].dev.js',
@@ -45,6 +46,7 @@ module.exports = {
     new CleanWebpackPlugin([resolve(__dirname, '../dist')], {
         root: process.cwd()
     }),
+    new VueLoaderPlugin(),
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
       // both options are optional
@@ -52,7 +54,7 @@ module.exports = {
       chunkFilename: devMode ? '[id].dev.css' : '[id].[contenthash].css',
     }),
     new HtmlWebpackPlugin({
-        title: 'Output Management'
+        template: './src/index.tpl'
     }),
   ],
   module: {
@@ -69,6 +71,14 @@ module.exports = {
           }
         ],
         exclude: /node_modules/
+      },
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader'
+      },
+      {
+        test: /\.js$/,
+        loader: 'babel-loader'
       },
       {
         test: /\.(sa|sc|c)ss$/,
@@ -108,6 +118,9 @@ module.exports = {
   },
   resolve: {
     symlinks: false,
-    extensions: ['.tsx', '.ts', '.js']
+    extensions: ['.tsx', '.ts', '.js'],
+    alias: {
+      '@': '../src/'
+    }
   }
 };
