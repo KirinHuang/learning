@@ -1,7 +1,9 @@
 const merge = require('webpack-merge')
 const common = require('./webpack.common')
+const { resolve, join } = require('path');
 const WorkboxPlugin = require('workbox-webpack-plugin')
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin")
+const CleanWebpackPlugin = require('clean-webpack-plugin')
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin")
 
 module.exports = merge(common, {
@@ -11,12 +13,15 @@ module.exports = merge(common, {
     chunkFilename: '[name].[contenthash:6].js',
     publicPath: './',
   },
-  devtool: 'eval',
+  // devtool: 'eval',
   plugins: [
-    new WorkboxPlugin.GenerateSW({
-      clientsClaim: true,
-      skipWaiting: true
-    })
+    new CleanWebpackPlugin([resolve(__dirname, '../dist')], {
+      root: process.cwd()
+    }),
+    // new WorkboxPlugin.GenerateSW({
+    //   clientsClaim: true,
+    //   skipWaiting: true
+    // })
   ],
   optimization: {
     minimizer: [

@@ -1,7 +1,9 @@
 <template>
   <div id="app">
-    <a href="#/home">home</a>
-    <a href="#/about">about</a>
+    <router-link to="/">home</router-link>
+    <router-link to="/about">about</router-link>
+    <router-link to="/parent/son">嵌套路由</router-link>
+    <router-link to="/xxxx">404</router-link>
     <router-view></router-view>
   </div>
 </template>
@@ -17,7 +19,9 @@ export default {
 
 <style>
 #app {
+  font-family: "Microsoft Yahei","微软雅黑", STXihei, "华文细黑", sans-serif;
   color: var(--primary-color);
-  background: url(./assets/images/logo.big.png) no-repeat;
+  /* background-image: url(./assets/images/logo.big.png);
+  background-repeat: no-repeat; */
 }
 </style>

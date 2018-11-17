@@ -2,7 +2,6 @@ const webpack = require('webpack')
 const merge = require('webpack-merge')
 const common = require('./webpack.common')
 
-webpack.logLevel = 'NONE'
 module.exports = merge(common, {
   mode: 'development',
   devtool: 'inline-source-map',
@@ -14,7 +13,7 @@ module.exports = merge(common, {
     historyApiFallback: true,
     contentBase: '../dist/',
     hot: true,
-    clientLogLevel: 'warning',
-    stats: 'verbose'
+    // clientLogLevel: 'warning',
+    // stats: 'verbose'
   },
 });

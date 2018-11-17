@@ -1,12 +1,26 @@
 const { resolve, join } = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const CleanWebpackPlugin = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const webpack = require('webpack')
 const devMode = process.env.NODE_ENV !== 'production'
 
-module.exports = {
+let cssLoader = [
+  MiniCssExtractPlugin.loader,
+  {
+    loader: "css-loader",
+    query: {
+      importLoaders: 1
+    }
+  },
+  'postcss-loader',
+]
+
+if (devMode) {
+  cssLoader.splice(0, 0, 'css-hot-loader')
+}
+
+const webpackConfig = {
   entry: {
     app: './src/main.js',
   },
@@ -33,6 +47,14 @@ module.exports = {
           name: 'vendors',
           chunks: 'all'
         },
+        styles: {
+          name: 'styles',
+          test: /\.s?css$/,
+          chunks: 'all',
+          minChunks: 1,
+          reuseExistingChunk: true,
+          enforce: true,
+        },
       }
     }
   },
@@ -46,18 +68,16 @@ module.exports = {
   },
   recordsPath: join(__dirname, "../dist/records.json"),
   plugins: [
-    new CleanWebpackPlugin([resolve(__dirname, '../dist')], {
-        root: process.cwd()
-    }),
-    new VueLoaderPlugin(),
+    new webpack.optimize.ModuleConcatenationPlugin(),
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
       // both options are optional
-      filename: devMode ? '[name].dev.css' : '[name].[contenthash].css',
-      chunkFilename: devMode ? '[id].dev.css' : '[id].[contenthash].css',
+      filename: devMode ? '[name].dev.css' : '[name].[contenthash:5].css',
+      chunkFilename: devMode ? '[id].dev.css' : '[id].[contenthash:5].css',
     }),
+    new VueLoaderPlugin(),
     new HtmlWebpackPlugin({
-        template: './src/index.tpl'
+      template: './src/index.tpl'
     }),
     // new webpack.optimize.AggressiveSplittingPlugin()
   ],
@@ -85,14 +105,8 @@ module.exports = {
         loader: 'babel-loader'
       },
       {
-        test: /\.(sa|sc|c)ss$/,
-        use: [
-          'css-hot-loader',
-          MiniCssExtractPlugin.loader,
-          'css-loader',
-          'postcss-loader',
-          // 'sass-loader',
-        ],
+        test: /\.css$/,
+        use: cssLoader,
       },
       {
         test: /\.(png|gif|svg|jpg)$/,
@@ -127,4 +141,6 @@ module.exports = {
       '@': '../src/'
     }
   }
-};
+}
+
+module.exports = webpackConfig
