@@ -4,3 +4,10 @@
     <router-view></router-view>
   </div>
 </template>
+
+<script>
+debugger
+export default {
+  
+}
+</script>

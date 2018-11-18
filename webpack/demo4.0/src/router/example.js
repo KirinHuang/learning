@@ -10,6 +10,11 @@ export default [
     component: () => import('../example/About.vue')
   },
   {
+    path: '/ctx/about',
+    name: 'about2',
+    component: () => import('../example/About.vue')
+  },
+  {
     path: '/parent',
     name: 'parent',
     component: () => import('../example/parent.vue'),

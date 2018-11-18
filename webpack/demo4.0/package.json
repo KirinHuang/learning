@@ -5,19 +5,25 @@
   "private": true,
   "scripts": {
     "start": "nodemon --watch build/ --exec \"webpack-dev-server --config build/webpack.dev.js\"",
-    "dev": "nodemon webpack-dev-server --open --config build/webpack.dev.js",
+    "dev": "webpack-dev-server --open --config build/webpack.dev.js",
     "dev2": "node build/server.js",
     "build": "cross-env NODE_ENV=production webpack --display verbose --progress --display-modules --config build/webpack.prod.js",
     "build:dev": "webpack --config build/webpack.dev.js",
     "watch": "webpack --watch --config build/webpack.dev.js",
     "serve": "http-server dist"
   },
+  "homepage": "./",
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "sideEffects": ["*.vue", "*.css"],
+  "sideEffects": [
+    "*.vue",
+    "*.css"
+  ],
   "devDependencies": {
     "@babel/core": "^7.1.6",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "@babel/plugin-proposal-decorators": "^7.1.6",
     "@babel/plugin-syntax-dynamic-import": "^7.0.0",
     "@babel/plugin-transform-runtime": "^7.1.0",
     "@babel/preset-env": "^7.1.6",
@@ -58,6 +64,7 @@
     "@babel/runtime-corejs2": "^7.1.5",
     "lodash": "^4.17.11",
     "vue": "^2.5.17",
+    "vue-class-component": "^6.3.2",
     "vue-router": "^3.0.1",
     "vue-template-compiler": "^2.5.17",
     "vuex": "^3.0.1"

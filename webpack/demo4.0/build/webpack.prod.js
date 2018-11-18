@@ -9,9 +9,9 @@ const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin")
 module.exports = merge(common, {
   mode: 'production',
   output: {
-    filename: '[name].[contenthash:6].js',
-    chunkFilename: '[name].[contenthash:6].js',
-    publicPath: './',
+    filename: 'js/[name].[contenthash:6].js',
+    chunkFilename: 'js/[name].[contenthash:6].js',
+    publicPath: '/',
   },
   // devtool: 'eval',
   plugins: [

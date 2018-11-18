@@ -25,9 +25,9 @@ const webpackConfig = {
     app: './src/main.js',
   },
   output: {
-    filename: '[name].dev.js',
+    filename: 'js/[name].dev.js',
     path: resolve(__dirname, '../dist'),
-    chunkFilename: '[name].dev.js',
+    chunkFilename: 'js/[name].dev.js',
     publicPath: '/',
     pathinfo: false
   },
@@ -72,12 +72,17 @@ const webpackConfig = {
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
       // both options are optional
-      filename: devMode ? '[name].dev.css' : '[name].[contenthash:5].css',
-      chunkFilename: devMode ? '[id].dev.css' : '[id].[contenthash:5].css',
+      filename: devMode ? 'css/[name].dev.css' : 'css/[name].[contenthash:5].css',
+      chunkFilename: devMode ? 'css/[id].dev.css' : 'css/[id].[contenthash:5].css',
     }),
     new VueLoaderPlugin(),
     new HtmlWebpackPlugin({
-      template: './src/index.tpl'
+      template: './src/index.tpl',
+      filename: 'index.html'
+    }),
+    new HtmlWebpackPlugin({ // for http-server spa
+      template: './src/index.tpl',
+      filename: '404.html'
     }),
     // new webpack.optimize.AggressiveSplittingPlugin()
   ],
@@ -102,7 +107,9 @@ const webpackConfig = {
       },
       {
         test: /\.js$/,
-        loader: 'babel-loader'
+        use: [
+          'babel-loader'
+        ]
       },
       {
         test: /\.css$/,
@@ -115,7 +122,7 @@ const webpackConfig = {
             loader: 'file-loader',
             options: {
               name: '[name].[hash:5].[ext]',
-              outputPath: 'images/'
+              outputPath: 'img/'
             }
           }
         ]

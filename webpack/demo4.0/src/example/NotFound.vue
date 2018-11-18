@@ -4,6 +4,13 @@
   </div>
 </template>
 
+<script>
+export default {
+  name: '404'
+}
+</script>
+
+
 <style>
 .not-found {
   font-size: 32px;
