@@ -63,9 +63,11 @@
     "@babel/polyfill": "^7.0.0",
     "@babel/runtime-corejs2": "^7.1.5",
     "lodash": "^4.17.11",
+    "rxjs": "^6.3.3",
     "vue": "^2.5.17",
     "vue-class-component": "^6.3.2",
     "vue-router": "^3.0.1",
+    "vue-rx": "^6.0.1",
     "vue-template-compiler": "^2.5.17",
     "vuex": "^3.0.1"
   }

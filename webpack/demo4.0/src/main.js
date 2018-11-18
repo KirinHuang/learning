@@ -1,7 +1,8 @@
 // the hooks before component definition.
 import './hooks'
 import Vue from 'vue'
-// require('./assets/styles/index.css') // import build时会丢失, because fo tree shaking[sideEffects]
+import VueRx from 'vue-rx';
+Vue.use(VueRx);
 import './assets/styles/index.css'
 import App from './App.vue'
 import router from './router/router'
