@@ -2,33 +2,33 @@ export default [
   {
     path: '/',
     name: 'home',
-    component: () => import('../example/Home.vue')
+    component: () => import(/* webpackChunkName: "pages" */ '../example/Home.vue')
   },
   {
     path: '/about',
     name: 'about',
-    component: () => import('../example/About.vue')
+    component: () => import(/* webpackChunkName: "pages" */ '../example/About.vue')
   },
   {
     path: '/ctx/about',
     name: 'about2',
-    component: () => import('../example/About.vue')
+    component: () => import(/* webpackChunkName: "pages" */ '../example/About.vue')
   },
   {
     path: '/parent',
     name: 'parent',
-    component: () => import('../example/parent.vue'),
+    component: () => import(/* webpackChunkName: "pages" */ '../example/parent.vue'),
     children: [
       {
         path: 'son',
         name: 'son',
-        component: () => import('../example/son.vue')
+        component: () => import(/* webpackChunkName: "pages" */ '../example/son.vue')
       }
     ]
   },
   {
     path: '*',
     name: 'NotFound',
-    component: () => import('../example/NotFound.vue')
+    component: () => import(/* webpackChunkName: "pages" */ '../example/NotFound.vue')
   }
 ]
