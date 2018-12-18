@@ -2,6 +2,7 @@
   <div id="app">
     <router-link to="/">home</router-link>
     <router-link to="/about">about</router-link>
+    <router-link to="/es6">es6</router-link>
     <router-link to="/ctx/about">sub path about</router-link>
     <router-link to="/parent/son">嵌套路由</router-link>
     <router-link to="/xxxx">404</router-link>

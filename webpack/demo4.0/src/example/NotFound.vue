@@ -5,11 +5,13 @@
 </template>
 
 <script>
-export default {
-  name: '404'
+import Vue from 'vue'
+import Component from 'vue-class-component'
+
+@Component
+export default class NotFound extends Vue {
 }
 </script>
-
 
 <style>
 .not-found {

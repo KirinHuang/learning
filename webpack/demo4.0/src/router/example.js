@@ -27,6 +27,11 @@ export default [
     ]
   },
   {
+    path: '/es6',
+    name: 'es6',
+    component: () => import(/* webpackChunkName: "pages" */ '../example/ES6.vue')
+  },
+  {
     path: '*',
     name: 'NotFound',
     component: () => import(/* webpackChunkName: "pages" */ '../example/NotFound.vue')

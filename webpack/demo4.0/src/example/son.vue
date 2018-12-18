@@ -7,8 +7,11 @@
 <script>
 __webpack_public_path__ = '../'
 
-export default {
-  
+import Vue from 'vue'
+import Component from 'vue-class-component'
+
+@Component
+export default class Son extends Vue {
 }
 </script>
 
