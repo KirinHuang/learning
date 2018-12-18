@@ -6,14 +6,12 @@ module.exports = merge(common, {
   mode: 'development',
   devtool: 'inline-source-map',
   plugins: [
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
   ],
-  // devtool: 'inline-source-map',
   devServer: {
     historyApiFallback: true,
     contentBase: '../dist/',
     hot: true,
-    // clientLogLevel: 'warning',
-    // stats: 'verbose'
+    open: true,
   },
-});
+})

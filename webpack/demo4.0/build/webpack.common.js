@@ -1,14 +1,15 @@
-const { resolve, join } = require('path');
+const { resolve, join } = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const webpack = require('webpack')
+const config = require('./config')
 const devMode = process.env.NODE_ENV !== 'production'
 
 let cssLoader = [
   MiniCssExtractPlugin.loader,
   {
-    loader: "css-loader",
+    loader: 'css-loader',
     query: {
       importLoaders: 1
     }
@@ -21,8 +22,9 @@ if (devMode) {
 }
 
 const webpackConfig = {
+  context: resolve(__dirname, '../'),
   entry: {
-    app: './src/main.js',
+    app: ['./src/main.js'],
   },
   output: {
     filename: 'js/[name].dev.js',
@@ -33,7 +35,7 @@ const webpackConfig = {
   },
   optimization: {
     runtimeChunk: {
-      name: "manifest",
+      name: 'manifest',
     },
     splitChunks: {
       cacheGroups: {
@@ -66,7 +68,7 @@ const webpackConfig = {
     //   root: '_'
     // }
   },
-  recordsPath: join(__dirname, "../dist/records.json"),
+  recordsPath: join(__dirname, '../dist/records.json'),
   plugins: [
     new webpack.optimize.ModuleConcatenationPlugin(),
     new MiniCssExtractPlugin({
@@ -84,7 +86,23 @@ const webpackConfig = {
       template: './src/index.tpl',
       filename: '404.html'
     }),
-    // new webpack.optimize.AggressiveSplittingPlugin()
+    // new webpack.DllPlugin({
+    //   path: join(__dirname, '../public/manifest/', '[name]-manifest.json'),
+    //   name: '[name]-[hash:5]',
+    //   context: __dirname,
+    // }),
+    // 这个是用来稳定hash值，防止出现webpack的hash出现莫名的变化
+    // new webpack.HashedModuleIdsPlugin(),
+    // new webpack.NamedChunksPlugin(),
+    // ...config.DllReferencePlugins,
+    // new webpack.DllReferencePlugin({
+    //   context: __dirname,
+    //   // scope: 'xyz',
+    //   manifest: require(join(__dirname, 'manifest.json')),
+    //   // name: './my-dll.js',
+    //   // sourceType: 'commonsjs2',
+    //   // content: { ... }
+    // })
   ],
   module: {
     rules: [
