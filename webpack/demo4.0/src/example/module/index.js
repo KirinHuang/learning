@@ -35,9 +35,9 @@ let Api = {
 Api.run()
 
 
-const hasOwnProperty = Object.prototype.hasOwnProperty;
-function hasOwn(obj, key) {
-  return obj:: hasOwnProperty(key);
-}
+// const hasOwnProperty = Object.prototype.hasOwnProperty;
+// function hasOwn(obj, key) {
+//   return obj::hasOwnProperty(key);
+// }
 
-console.log(hasOwn({a: 1}, 'a'))
+// console.log(hasOwn({a: 1}, 'a'))
